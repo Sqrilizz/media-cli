@@ -1,0 +1,272 @@
+# media-cli
+
+[![Release](https://img.shields.io/github/v/release/sqrilizz/media-cli)](https://github.com/USERNAME/media-cli/releases/latest)
+[![Build](https://img.shields.io/github/actions/workflow/status/USERNAME/media-cli/release.yml)](https://github.com/USERNAME/media-cli/actions)
+[![License](https://img.shields.io/github/license/USERNAME/media-cli)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/USERNAME/media-cli/total)](https://github.com/USERNAME/media-cli/releases)
+
+Universal CLI media player for YouTube, YouTube Music, Twitch, Anime, and local files.
+
+```
+ ███╗   ███╗███████╗██████╗ ██╗ █████╗       ██████╗██╗     ██╗
+ ████╗ ████║██╔════╝██╔══██╗██║██╔══██╗     ██╔════╝██║     ██║
+ ██╔████╔██║█████╗  ██║  ██║██║███████║     ██║     ██║     ██║
+ ██║╚██╔╝██║██╔══╝  ██║  ██║██║██╔══██║     ██║     ██║     ██║
+ ██║ ╚═╝ ██║███████╗██████╔╝██║██║  ██║     ╚██████╗███████╗██║
+ ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝      ╚═════╝╚══════╝╚═╝
+ 
+ 🎬 YouTube  🎵 Music  🎌 Anime  🔴 Twitch  📁 Local Files
+```
+
+## Quick Start
+
+```bash
+# Super Quick Install (download binary directly from repo)
+curl -L https://raw.githubusercontent.com/USERNAME/media-cli/main/media-cli -o media-cli
+chmod +x media-cli
+sudo mv media-cli /usr/local/bin/
+
+# Or use install script
+curl -fsSL https://raw.githubusercontent.com/USERNAME/media-cli/main/install-direct.sh | bash
+
+# Run
+media-cli
+```
+
+**Note:** The binary in the repo is built for Linux x86_64. For other platforms, use the [releases](https://github.com/USERNAME/media-cli/releases/latest) or build from source.
+
+## Features
+
+- 📺 **YouTube** - search and play videos
+- 🎵 **YouTube Music** - audio-only mode for music
+- 🔴 **Twitch** - live streams
+- 🎌 **Anime** - anime via allanime API (like ani-cli)
+- 📁 **Local Files** - play from ~/Videos
+- 📜 **History** - track watched content
+- 🎨 **Beautiful Interface** - colorful menu with borders
+- 🔄 **Interactive Mode** - next/previous/replay/select
+- 🌐 **Proxy Support** - bypass restrictions with auto-proxy detection
+
+## Installation
+
+### Method 1: Direct Download (Fastest) ⚡
+
+Download pre-compiled binary directly from repository:
+
+```bash
+# One command install
+curl -L https://raw.githubusercontent.com/USERNAME/media-cli/main/media-cli -o media-cli && chmod +x media-cli && sudo mv media-cli /usr/local/bin/
+
+# Or step by step
+curl -L https://raw.githubusercontent.com/USERNAME/media-cli/main/media-cli -o media-cli
+chmod +x media-cli
+sudo mv media-cli /usr/local/bin/
+```
+
+**Note:** Binary is for Linux x86_64. For other platforms, see Method 2 or 3.
+
+### Method 2: Install Script
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/USERNAME/media-cli/main/install-direct.sh | bash
+```
+
+### Method 3: From GitHub Releases (All Platforms)
+
+Download for your platform from [releases](https://github.com/USERNAME/media-cli/releases/latest):
+
+#### Linux (x86_64)
+```bash
+curl -L https://github.com/USERNAME/media-cli/releases/latest/download/media-cli-linux-x86_64 -o media-cli
+chmod +x media-cli
+sudo mv media-cli /usr/local/bin/
+```
+
+#### macOS (Intel)
+```bash
+curl -L https://github.com/USERNAME/media-cli/releases/latest/download/media-cli-macos-x86_64 -o media-cli
+chmod +x media-cli
+sudo mv media-cli /usr/local/bin/
+```
+
+#### macOS (Apple Silicon)
+```bash
+curl -L https://github.com/USERNAME/media-cli/releases/latest/download/media-cli-macos-arm64 -o media-cli
+chmod +x media-cli
+sudo mv media-cli /usr/local/bin/
+```
+
+#### Windows
+Download `media-cli-windows-x86_64.exe` from [releases](https://github.com/USERNAME/media-cli/releases/latest) and add to PATH.
+
+### Build from Source
+```bash
+git clone https://github.com/USERNAME/media-cli
+cd media-cli
+cargo build --release
+sudo cp target/release/media-cli /usr/local/bin/
+```
+
+## Usage
+
+### Interactive Menu
+```bash
+media-cli
+```
+
+### Direct Commands
+```bash
+# YouTube video
+media-cli yt "title"
+media-cli yt "https://youtube.com/watch?v=..."
+
+# YouTube Music (audio only)
+media-cli music "song name"
+
+# Twitch stream
+media-cli twitch channel
+media-cli twitch https://twitch.tv/channel
+
+# Anime
+media-cli anime "title"
+
+# Local files
+media-cli file
+media-cli file /path/to/folder
+
+# History
+media-cli history
+media-cli history --clear
+```
+
+## Dependencies
+
+Install required dependencies for your system:
+
+### Ubuntu / Debian
+```bash
+sudo apt update
+sudo apt install mpv yt-dlp streamlink fzf curl
+```
+
+### Arch Linux
+```bash
+sudo pacman -S mpv yt-dlp streamlink fzf curl
+```
+
+### Fedora
+```bash
+sudo dnf install mpv yt-dlp streamlink fzf curl
+```
+
+### macOS
+```bash
+brew install mpv yt-dlp streamlink fzf curl
+```
+
+### Windows
+1. Install [mpv](https://mpv.io/installation/)
+2. Install [yt-dlp](https://github.com/yt-dlp/yt-dlp#installation)
+3. Install [streamlink](https://streamlink.github.io/install.html)
+4. Install [fzf](https://github.com/junegunn/fzf#windows)
+
+## Dependencies
+
+- `mpv` or `vlc` - video player
+- `yt-dlp` - for YouTube
+- `streamlink` - for Twitch
+- `fzf` - for selection menu
+- `curl` - for API requests
+
+## Options
+
+- `--proxy <URL>` - use proxy (or `auto` for auto-detection)
+- `--terminal` / `-t` - play in terminal (kitty)
+- `--quality <Q>` - video quality (720p, 1080p, best)
+- `--player <P>` - choose player (mpv, vlc)
+- `--gui` - graphical interface (ratatui)
+
+## Examples
+
+```bash
+# Music in console
+media-cli music "lofi hip hop"
+
+# Anime with proxy
+media-cli anime "naruto" --proxy http://proxy:8080
+
+# YouTube in terminal
+media-cli yt "music video" --terminal
+
+# Twitch with quality
+media-cli twitch streamer --quality 720p
+
+# Auto proxy detection
+media-cli --proxy auto yt "video"
+```
+
+## Features
+
+### YouTube Music
+Plays audio only without video, perfect for background music:
+- Minimal resource usage
+- Progress bar in terminal
+- Navigate between tracks
+
+### Anime
+Full provider implementation like ani-cli:
+- Multiple provider support (Ak, S-mp4, Luf-Mp4, Yt-mp4)
+- Automatic working provider selection
+- Subtitles and quality options
+
+### Interactive Mode
+After playback:
+- `replay` - replay current
+- `next` - next item
+- `previous` - previous item
+- `select` - select another
+- `quit` - exit
+
+### Proxy & Bypass
+- Auto-detect working proxies from `proxies.txt`
+- Support for SOCKS5 and HTTP proxies
+- DPI bypass integration (zapret/GoodbyeDPI)
+
+## Configuration
+
+Create `proxies.txt` in the current directory or `~/.config/media-cli/proxies.txt`:
+
+```
+# SOCKS5 proxies (one per line)
+127.0.0.1:1080
+socks5://proxy.example.com:1080
+
+# HTTP proxies
+http://proxy.example.com:8080
+```
+
+## License
+
+MIT
+
+---
+
+## For Developers
+
+### Setting Up Releases
+
+If you forked this project, see [GITHUB_RELEASE_SETUP.md](GITHUB_RELEASE_SETUP.md) for instructions on setting up automatic binary releases.
+
+### Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+
+### Building from Source
+
+```bash
+git clone https://github.com/USERNAME/media-cli
+cd media-cli
+cargo build --release
+```
+
+Binary will be at `target/release/media-cli`
