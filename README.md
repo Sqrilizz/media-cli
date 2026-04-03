@@ -1,9 +1,8 @@
 # media-cli
 
-[![Release](https://img.shields.io/github/v/release/sqrilizz/media-cli)](https://github.com/USERNAME/media-cli/releases/latest)
-[![Build](https://img.shields.io/github/actions/workflow/status/USERNAME/media-cli/release.yml)](https://github.com/USERNAME/media-cli/actions)
-[![License](https://img.shields.io/github/license/USERNAME/media-cli)](LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/USERNAME/media-cli/total)](https://github.com/USERNAME/media-cli/releases)
+[![GitHub](https://img.shields.io/badge/GitHub-Sqrilizz%2Fmedia--cli-blue?logo=github)](https://github.com/Sqrilizz/media-cli)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Rust](https://img.shields.io/badge/rust-1.70%2B-orange?logo=rust)](https://www.rust-lang.org)
 
 Universal CLI media player for YouTube, YouTube Music, Twitch, Anime, and local files.
 
