@@ -6,33 +6,38 @@
 
 Universal CLI media player for YouTube, YouTube Music, Twitch, Anime, and local files.
 
-```
- ███╗   ███╗███████╗██████╗ ██╗ █████╗       ██████╗██╗     ██╗
- ████╗ ████║██╔════╝██╔══██╗██║██╔══██╗     ██╔════╝██║     ██║
- ██╔████╔██║█████╗  ██║  ██║██║███████║     ██║     ██║     ██║
- ██║╚██╔╝██║██╔══╝  ██║  ██║██║██╔══██║     ██║     ██║     ██║
- ██║ ╚═╝ ██║███████╗██████╔╝██║██║  ██║     ╚██████╗███████╗██║
- ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝      ╚═════╝╚══════╝╚═╝
- 
- 🎬 YouTube  🎵 Music  🎌 Anime  🔴 Twitch  📁 Local Files
-```
+## Screenshot
+
+![media-cli interface](docs/photo.png)
 
 ## Quick Start
 
 ```bash
-# Super Quick Install (download binary directly from repo)
-curl -L https://raw.githubusercontent.com/USERNAME/media-cli/main/media-cli -o media-cli
+# Install (Linux/macOS)
+curl -L https://raw.githubusercontent.com/sqrilizz/media-cli/main/media-cli -o media-cli
 chmod +x media-cli
 sudo mv media-cli /usr/local/bin/
-
-# Or use install script
-curl -fsSL https://raw.githubusercontent.com/USERNAME/media-cli/main/install-direct.sh | bash
 
 # Run
 media-cli
 ```
 
-**Note:** The binary in the repo is built for Linux x86_64. For other platforms, use the [releases](https://github.com/USERNAME/media-cli/releases/latest) or build from source.
+## Features
+
+```bash
+# Super Quick Install (download binary directly from repo)
+curl -L https://raw.githubusercontent.com/sqrilizz/media-cli/main/media-cli -o media-cli
+chmod +x media-cli
+sudo mv media-cli /usr/local/bin/
+
+# Or use install script
+curl -fsSL https://raw.githubusercontent.com/sqrilizz/media-cli/main/install-direct.sh | bash
+
+# Run
+media-cli
+```
+
+**Note:** The binary in the repo is built for Linux x86_64. For other platforms, use the [releases](https://github.com/sqrilizz/media-cli/releases/latest) or build from source.
 
 ## Features
 
@@ -54,10 +59,10 @@ Download pre-compiled binary directly from repository:
 
 ```bash
 # One command install
-curl -L https://raw.githubusercontent.com/USERNAME/media-cli/main/media-cli -o media-cli && chmod +x media-cli && sudo mv media-cli /usr/local/bin/
+curl -L https://raw.githubusercontent.com/sqrilizz/media-cli/main/media-cli -o media-cli && chmod +x media-cli && sudo mv media-cli /usr/local/bin/
 
 # Or step by step
-curl -L https://raw.githubusercontent.com/USERNAME/media-cli/main/media-cli -o media-cli
+curl -L https://raw.githubusercontent.com/sqrilizz/media-cli/main/media-cli -o media-cli
 chmod +x media-cli
 sudo mv media-cli /usr/local/bin/
 ```
@@ -67,40 +72,40 @@ sudo mv media-cli /usr/local/bin/
 ### Method 2: Install Script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/USERNAME/media-cli/main/install-direct.sh | bash
+curl -fsSL https://raw.githubusercontent.com/sqrilizz/media-cli/main/install-direct.sh | bash
 ```
 
 ### Method 3: From GitHub Releases (All Platforms)
 
-Download for your platform from [releases](https://github.com/USERNAME/media-cli/releases/latest):
+Download for your platform from [releases](https://github.com/sqrilizz/media-cli/releases/latest):
 
 #### Linux (x86_64)
 ```bash
-curl -L https://github.com/USERNAME/media-cli/releases/latest/download/media-cli-linux-x86_64 -o media-cli
+curl -L https://github.com/sqrilizz/media-cli/releases/latest/download/media-cli-linux-x86_64 -o media-cli
 chmod +x media-cli
 sudo mv media-cli /usr/local/bin/
 ```
 
 #### macOS (Intel)
 ```bash
-curl -L https://github.com/USERNAME/media-cli/releases/latest/download/media-cli-macos-x86_64 -o media-cli
+curl -L https://github.com/sqrilizz/media-cli/releases/latest/download/media-cli-macos-x86_64 -o media-cli
 chmod +x media-cli
 sudo mv media-cli /usr/local/bin/
 ```
 
 #### macOS (Apple Silicon)
 ```bash
-curl -L https://github.com/USERNAME/media-cli/releases/latest/download/media-cli-macos-arm64 -o media-cli
+curl -L https://github.com/sqrilizz/media-cli/releases/latest/download/media-cli-macos-arm64 -o media-cli
 chmod +x media-cli
 sudo mv media-cli /usr/local/bin/
 ```
 
 #### Windows
-Download `media-cli-windows-x86_64.exe` from [releases](https://github.com/USERNAME/media-cli/releases/latest) and add to PATH.
+Download `media-cli-windows-x86_64.exe` from [releases](https://github.com/sqrilizz/media-cli/releases/latest) and add to PATH.
 
 ### Build from Source
 ```bash
-git clone https://github.com/USERNAME/media-cli
+git clone https://github.com/sqrilizz/media-cli
 cd media-cli
 cargo build --release
 sudo cp target/release/media-cli /usr/local/bin/
@@ -250,22 +255,46 @@ MIT
 
 ---
 
+## Documentation
+
+- [README.md](README.md) - Main documentation
+- [docs/EXAMPLES.md](docs/EXAMPLES.md) - Usage examples
+- [docs/PROXY.md](docs/PROXY.md) - Proxy configuration
+- [docs/HOW_TO_USE.md](docs/HOW_TO_USE.md) - User guide
+- [docs/QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md) - Command reference
+- [CHANGELOG.md](CHANGELOG.md) - Version history
+
 ## For Developers
 
-### Setting Up Releases
+- [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) - Development guide
+- [docs/GITHUB_RELEASE_SETUP.md](docs/GITHUB_RELEASE_SETUP.md) - Release setup
+- [docs/START_HERE.md](docs/START_HERE.md) - Quick start for developers
 
-If you forked this project, see [GITHUB_RELEASE_SETUP.md](GITHUB_RELEASE_SETUP.md) for instructions on setting up automatic binary releases.
+## Project Structure
 
-### Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
-
-### Building from Source
-
-```bash
-git clone https://github.com/USERNAME/media-cli
-cd media-cli
-cargo build --release
 ```
-
-Binary will be at `target/release/media-cli`
+media-cli/
+├── src/                    # Source code
+│   ├── main.rs            # Main application
+│   ├── cli.rs             # CLI argument parsing
+│   ├── bypass.rs          # Proxy/bypass functionality
+│   ├── player.rs          # Media player integration
+│   ├── selector.rs        # Interactive selection (fzf)
+│   ├── tui.rs             # Terminal UI (ratatui)
+│   ├── history.rs         # Watch history
+│   └── sources/           # Media source modules
+│       ├── youtube.rs     # YouTube support
+│       ├── anime.rs       # Anime support
+│       ├── twitch.rs      # Twitch support
+│       └── local.rs       # Local files
+├── scripts/               # Installation scripts
+│   ├── install.sh         # Main installer
+│   └── install-direct.sh  # Direct binary installer
+├── docs/                  # Documentation
+├── .github/               # GitHub Actions workflows
+├── media-cli              # Pre-compiled binary (Linux x86_64)
+├── proxies.txt            # Proxy list (optional)
+├── README.md              # This file
+├── CHANGELOG.md           # Version history
+└── LICENSE                # MIT License
+```
