@@ -1,7 +1,11 @@
 [package]
 name = "media-cli"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+authors = ["Sqrilizz <sqrilizz@users.noreply.github.com>"]
+description = "Universal CLI media player for YouTube, Twitch, Anime and local files"
+repository = "https://github.com/sqrilizz/media-cli"
+license = "MIT"
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }

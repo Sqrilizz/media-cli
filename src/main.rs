@@ -333,6 +333,7 @@ fn run_main_menu(proxy: Option<&str>, terminal: bool) -> Result<()> {
         println!();
         let mode_tag = if terminal { "  \x1B[38;2;198;66;110m[terminal mode]\x1B[0m" } else { "" };
         println!("  \x1B[38;5;245mUniversal Media Player\x1B[0m  \x1B[38;5;240mv{}\x1B[0m{}", VERSION, mode_tag);
+        println!("  \x1B[38;5;240mby Sqrilizz\x1B[0m");
         println!("  \x1B[38;5;239m-----------------------------------------------------------------\x1B[0m");
         println!();
         println!("  \x1B[38;5;249mSelect source:\x1B[0m");
