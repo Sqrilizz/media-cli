@@ -5,7 +5,7 @@
 [![Rust](https://img.shields.io/badge/rust-1.74%2B-orange?logo=rust)](https://www.rust-lang.org)
 
 Universal CLI media player for YouTube, YouTube Music, Twitch, Anime, and local files.
-For best experience use [kitty](https://github.com/kovidgoyal/kitty)
+Terminal-first interface with Catppuccin Mocha theme, CAVA-style visualizer, and keyboard-driven controls.
 
 ## Screenshot
 
@@ -31,7 +31,7 @@ media-cli
 - 📜 **History** - track watched content
 - ⚙️ **Config** - defaults via `~/.config/media-cli/config.toml`
 - 🎨 **Native TUI** - responsive keyboard-first interface powered by ratatui
-- 🎚️ **Music Deck** - audio controls with configurable visualizer styles
+- 🎚️ **Music Deck** - audio controls with progress bar and CAVA-style visualizer (BARS / MIRROR)
 - 🔄 **Interactive Mode** - next/previous/replay/select
 
 ## Installation
@@ -195,8 +195,8 @@ Plays audio only without video, perfect for background music:
 
 - Minimal resource usage
 - In-app controls for pause, mute and stop
-- Configurable visualizer styles: `mirror`, `bars`, `wave`
-- Press `V` during playback to cycle visualizer style
+- Configurable visualizer styles: `bars` (vertical CAVA-style) and `mirror` (symmetric)
+- Press `V` during playback to toggle visualizer style
 
 ### Anime
 
