@@ -2,7 +2,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-Sqrilizz%2Fmedia--cli-blue?logo=github)](https://github.com/Sqrilizz/media-cli)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Rust](https://img.shields.io/badge/rust-1.74%2B-orange?logo=rust)](https://www.rust-lang.org)
+[![Rust](https://img.shields.io/badge/rust-1.85%2B-orange?logo=rust)](https://www.rust-lang.org)
 
 Universal CLI media player for YouTube, YouTube Music, Twitch, Anime, and local files.
 Terminal-first interface with Catppuccin Mocha theme, CAVA-style visualizer, and keyboard-driven controls.

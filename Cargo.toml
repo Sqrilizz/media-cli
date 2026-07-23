@@ -2,7 +2,7 @@
 name = "media-cli"
 version = "0.2.0"
 edition = "2021"
-rust-version = "1.74"
+rust-version = "1.85"
 authors = ["Sqrilizz <sqrilizz@users.noreply.github.com>"]
 description = "Universal CLI media player for YouTube, Twitch, Anime and local files"
 repository = "https://github.com/sqrilizz/media-cli"
