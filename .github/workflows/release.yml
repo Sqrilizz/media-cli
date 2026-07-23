@@ -1,0 +1,197 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            artifact_name: media-cli
+            asset_name: media-cli-linux-x86_64
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            artifact_name: media-cli
+            asset_name: media-cli-linux-x86_64-musl
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            artifact_name: media-cli
+            asset_name: media-cli-linux-arm64
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            artifact_name: media-cli
+            asset_name: media-cli-macos-x86_64
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            artifact_name: media-cli
+            asset_name: media-cli-macos-arm64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            artifact_name: media-cli.exe
+            asset_name: media-cli-windows-x86_64.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+          components: rustfmt, clippy
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Check formatting
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        run: cargo fmt --check
+
+      - name: Lint
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Test
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        run: cargo test --all-targets --all-features
+
+      - name: Install musl tools (Linux musl only)
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools
+
+      - name: Build
+        if: matrix.target != 'aarch64-unknown-linux-musl'
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Build Linux ARM64
+        if: matrix.target == 'aarch64-unknown-linux-musl'
+        uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: aarch64
+          distro: alpine_latest
+          install: apk add build-base rust cargo
+          run: cargo build --release --target aarch64-unknown-linux-musl
+
+      - name: Strip binary (Linux and macOS)
+        if: matrix.os != 'windows-latest'
+        run: strip target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset_name }}
+          path: target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Display structure of downloaded files
+        run: ls -R artifacts/
+
+      - name: Prepare release files
+        shell: bash
+        run: |
+          mkdir -p release
+          for artifact_dir in artifacts/*; do
+            asset_name="$(basename "$artifact_dir")"
+            source_file="$(find "$artifact_dir" -maxdepth 1 -type f | head -n 1)"
+            cp "$source_file" "release/$asset_name"
+          done
+          (cd release && sha256sum * > SHA256SUMS)
+          ls -lh release/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+          body: |
+            ## Installation
+
+            ### Linux (x86_64)
+            ```bash
+            curl -L https://github.com/${{ github.repository }}/releases/latest/download/media-cli-linux-x86_64 -o media-cli
+            chmod +x media-cli
+            sudo mv media-cli /usr/local/bin/
+            ```
+
+            ### Linux (musl - static binary)
+            ```bash
+            curl -L https://github.com/${{ github.repository }}/releases/latest/download/media-cli-linux-x86_64-musl -o media-cli
+            chmod +x media-cli
+            sudo mv media-cli /usr/local/bin/
+            ```
+
+            ### Linux (ARM64)
+            ```bash
+            curl -L https://github.com/${{ github.repository }}/releases/latest/download/media-cli-linux-arm64 -o media-cli
+            chmod +x media-cli
+            sudo mv media-cli /usr/local/bin/
+            ```
+
+            ### macOS (Intel)
+            ```bash
+            curl -L https://github.com/${{ github.repository }}/releases/latest/download/media-cli-macos-x86_64 -o media-cli
+            chmod +x media-cli
+            sudo mv media-cli /usr/local/bin/
+            ```
+
+            ### macOS (Apple Silicon)
+            ```bash
+            curl -L https://github.com/${{ github.repository }}/releases/latest/download/media-cli-macos-arm64 -o media-cli
+            chmod +x media-cli
+            sudo mv media-cli /usr/local/bin/
+            ```
+
+            ### Windows
+            Download `media-cli-windows-x86_64.exe` and add to PATH.
+
+            ## Verification
+            Download `SHA256SUMS` from this release and verify binaries with:
+            ```bash
+            sha256sum -c SHA256SUMS
+            ```
+
+            ## Dependencies
+            - `mpv` or `vlc` - video player
+            - `yt-dlp` - YouTube and Twitch extraction
+
+            ## Quick Start
+            ```bash
+            # Interactive menu
+            media-cli
+
+            # YouTube
+            media-cli yt "funny cats"
+
+            # Music
+            media-cli music "lofi hip hop"
+
+            # Anime
+            media-cli anime "naruto"
+
+            # Twitch
+            media-cli twitch shroud
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
