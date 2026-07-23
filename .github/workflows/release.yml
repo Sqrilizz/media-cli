@@ -77,15 +77,12 @@ jobs:
 
       - name: Build Linux ARM64
         if: matrix.target == 'aarch64-unknown-linux-musl'
-        uses: uraimo/run-on-arch-action@v2
-        with:
-          arch: aarch64
-          distro: alpine_latest
-          install: apk add build-base rust cargo
-          run: cargo build --release --target aarch64-unknown-linux-musl
+        run: |
+          cargo install cross --git https://github.com/cross-rs/cross
+          cross build --release --target aarch64-unknown-linux-musl
 
       - name: Strip binary (Linux and macOS)
-        if: matrix.os != 'windows-latest'
+        if: matrix.os != 'windows-latest' && matrix.target != 'aarch64-unknown-linux-musl'
         run: strip target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
 
       - name: Upload artifact
